@@ -5,7 +5,7 @@ const About = (...props) => {
   const { resume, setResume } = props[0];
 
   const changeResumeInfo = (page, key, value) => {
-    resumeUpdater(resume, setResume, page, key, value);
+    resumeUpdater({ resume, setResume, page, key, value });
   };
 
   return (
