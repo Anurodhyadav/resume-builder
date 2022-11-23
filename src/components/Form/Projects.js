@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { resumeUpdater } from "../../utils";
+import { resumeUpdater, removeEntryInform } from "../../utils";
 import Delete_Icon from "../../assets/delete-resume.png";
 
 const Projects = (...props) => {
@@ -12,23 +12,23 @@ const Projects = (...props) => {
     return getprojectFormCount;
   });
   const changeResumeInfo = (page, key, value, internal_key) => {
-    resumeUpdater(resume, setResume, page, key, value, internal_key);
+    resumeUpdater({ resume, setResume, page, key, value, internal_key });
   };
   const addAnotherForm = () => {
     localStorage.setItem("projectFormCount", projectFormCount + 1);
     setprojectFormCount((preVal) => preVal + 1);
   };
-  const removeForm = (index) => {
+  const removeProjectForm = (index) => {
     if (projectFormCount === 1) return;
-    const updated_resume = {
-      ...resume,
-      project: resume.projects.filter((el, i) => i !== index),
-    };
+    const updated_resume_info = removeEntryInform({
+      index,
+      resume,
+      page: "projects",
+    });
+    setResume(updated_resume_info);
 
     localStorage.setItem("projectFormCount", projectFormCount - 1);
     setprojectFormCount((preVal) => preVal - 1);
-
-    setResume(updated_resume);
   };
 
   return (
@@ -121,7 +121,7 @@ const Projects = (...props) => {
               </div>
             </form>
             <div
-              onClick={() => removeForm(el)}
+              onClick={() => removeProjectForm(el)}
               className="absolute cursor-pointer top-5 right-0"
             >
               <img src={Delete_Icon} alt="education" />

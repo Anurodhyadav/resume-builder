@@ -9,7 +9,7 @@ const SideNavbar = ({ setInputType }) => {
     <div className="flex flex-col gap-16 h-screen shadow-md  bg-[#ffffff]">
       <div
         className="cursor-pointer p-3 items-center justify-center flex flex-col bg-[#ffffff] rounded-md"
-        onClick={() => setInputType("about")}
+        onClick={() => setInputType("basics")}
       >
         <img src={About_Icon} alt="about" />
         <div>About</div>
@@ -23,7 +23,7 @@ const SideNavbar = ({ setInputType }) => {
       </div>
       <div
         className="cursor-pointer p-3 items-center justify-center flex flex-col bg-[#ffffff] rounded-md"
-        onClick={() => setInputType("experience")}
+        onClick={() => setInputType("work")}
       >
         <img src={Experinece_Icon} alt="experience" />
         <div>Experience</div>
