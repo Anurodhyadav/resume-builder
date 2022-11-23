@@ -1,11 +1,11 @@
-export const resumeUpdater = (
+export const resumeUpdater = ({
   resume,
   setResume,
   page,
   key,
   value,
-  internal_key = null
-) => {
+  internal_key = null,
+}) => {
   const UpdateData = (page, internal_key, key, value) => {
     if (!resume[page][internal_key]) {
       resume[page].push({});
@@ -28,4 +28,13 @@ export const resumeUpdater = (
       [page]: UpdateData(page, internal_key, key, value),
     });
   }
+};
+
+export const removeEntryInform = ({ index, resume, page }) => {
+  const updated_resume = {
+    ...resume,
+    [page]: resume[page].filter((el, i) => i !== index),
+  };
+
+  return updated_resume;
 };

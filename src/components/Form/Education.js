@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { resumeUpdater } from "../../utils";
+import { resumeUpdater, removeEntryInform } from "../../utils";
 import Delete_Icon from "../../assets/delete-resume.png";
 
 const Education = (...props) => {
@@ -12,23 +12,23 @@ const Education = (...props) => {
     return getEductionFormCount;
   });
   const changeResumeInfo = (page, key, value, internal_key) => {
-    resumeUpdater(resume, setResume, page, key, value, internal_key);
+    resumeUpdater({ resume, setResume, page, key, value, internal_key });
   };
   const addAnotherForm = () => {
     localStorage.setItem("educationFormCount", educatonFormCount + 1);
     seteducatonFormCount((preVal) => preVal + 1);
   };
-  const removeForm = (index) => {
+  const removeEducationForm = (index) => {
     if (educatonFormCount === 1) return;
-    const updated_resume = {
-      ...resume,
-      education: resume.education.filter((el, i) => i !== index),
-    };
+    const updated_resume_info = removeEntryInform({
+      index,
+      resume,
+      page: "education",
+    });
+    setResume(updated_resume_info);
 
     localStorage.setItem("educationFormCount", educatonFormCount - 1);
     seteducatonFormCount((preVal) => preVal - 1);
-
-    setResume(updated_resume);
   };
 
   return (
@@ -196,7 +196,7 @@ const Education = (...props) => {
               ></textarea>
             </form>
             <div
-              onClick={() => removeForm(el)}
+              onClick={() => removeEducationForm(el)}
               className="absolute cursor-pointer top-0 right-0"
             >
               <img src={Delete_Icon} alt="education" />

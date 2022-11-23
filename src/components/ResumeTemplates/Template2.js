@@ -10,7 +10,7 @@ const Template2 = ({ resume }) => {
     designation,
     email,
     description,
-  } = resume.about;
+  } = resume.basics;
 
   const templateTwoRef = useRef();
 
@@ -66,7 +66,7 @@ const Template2 = ({ resume }) => {
           <div>
             <div className="text-[20px] font-[500] mb-2">WORK EXPERIENCE</div>
             <hr className="border-t-[1px] border-t-[#353535]" />
-            {resume.experience.map((el) => {
+            {resume.work.map((el) => {
               return (
                 <div className="mb-6">
                   <div>
@@ -91,7 +91,7 @@ const Template2 = ({ resume }) => {
           <div>
             <div className="text-[20px] font-[500] mb-2 ">PROJECT</div>
             <hr className="border-t-[1px] border-t-[#353535]" />
-            {resume.project.map((el) => {
+            {resume.projects.map((el) => {
               return (
                 <div className="mb-6">
                   <div>
